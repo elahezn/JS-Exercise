@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		div.btns{
+          width:100px;
+          height:100px;
+          position:absolute;
+          background-color:purple;
+          top:100px;
+          left:50px;
+          color:white;
+          text-align:center;
+          -webkit-transition:all 1s;
+          border:3px solid white;
+       }
+       body{
+         background-color:black;
+       }
+	</style>
+</head>
+<body>
+    <div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+    <div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+	<div class='btns'>Click Me</div>
+
+	<script type="text/javascript">
+	  var btns=document.getElementsByClassName("btns");
+      function rnd(num){
+       return Math.round(Math.random()*num);
+      }
+      function changeColor(){
+       return "rgb("+rnd(256)+ ","+rnd(256)+ ","+ rnd(256)+ ")";
+      }
+      function becharkh(){
+       return "rotate("+rnd(360)+"deg)";
+      }
+
+      for(i=0;i<btns.length;i++){
+       btns.item(i).onmouseover= function move(){
+       this.style.left=rnd(90)+"%";
+       this.style.top=rnd(95)+"%";
+       this.style.borderRadius=rnd(50)+"px";
+       this.style.backgroundColor=changeColor();
+       this.style.color=changeColor();
+       this.style.fontSize=rnd(40)+"px";     
+       this.style.textTransform="capitalize";
+       this.style.WebkitTransform=becharkh();  
+       this.style.borderWidth=rnd(10)+"px";
+       };
+      }
+	</script>
+	
+</body>
+</html>
