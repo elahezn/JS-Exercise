@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		div.box{
+			width:300px;
+			height: 300px;
+			/*border: 1px solid black;*/
+			position: relative;
+			-webkit-transition:3s all 5s;
+			top:100px;
+			left:200px;
+		}
+		div.box div{
+			width: 100px;
+			height: 100px;
+			background-color: lightblue;
+			opacity: .5;
+			position: absolute;
+			border-bottom-right-radius: 100px;
+			border: 1px solid black;
+			top: 150px;
+			left: 150px;
+			-webkit-transition:all 3s;
+		}
+	</style>
+</head>
+<body>
+	<div class="box" id="main">
+		<script type="text/javascript">
+  			for(var i=0; i<20; i++){
+  				document.write('<div></div>');
+  			}
+		</script>
+	</div>
+	<script type="text/javascript">
+    	var divs=document.getElementsByClassName('box').item(0).getElementsByTagName('div');
+    	function rnd(a,b){
+     		return Math.floor(Math.random()*(b-a+1))+a;
+    	}
+    	function randColor(h,s,l){
+     		 return "hsl("+h+","+s+"%,"+l+"%)";
+    	}
+      	var i=0;
+      	function choose(){
+      		divs.item(i).style.webkitTransform="rotate("+18*i+"deg)";
+      		divs.item(i).style.webkitTransformOrigin="left top";
+      		divs.item(i).style.backgroundColor=randColor(rnd(0,360),80,60);
+      		i++;
+      	}
+      
+      	setInterval(choose,30);
+      	var box=document.getElementsByClassName('box').item(0);
+      	 box.style.webkitTransform="rotate(750deg)";
+	</script>
+</body>
+</html>
