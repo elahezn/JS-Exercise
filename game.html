@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+ 		body{
+ 			background-color: black;
+ 		}
+ 		div.box div{
+ 			width: 50px;
+ 			height: 50px;
+ 			margin: 5px;
+ 			background-color: white;
+ 			position: fixed;
+ 			top: -60px;
+		    cursor: pointer;
+ 		}
+ 		#score{
+ 			color: white;
+ 			position: fixed;
+ 			top: :20px;
+ 			left: 20px;
+ 			font-size: 20px;
+ 		}
+	</style>
+</head>
+<body>
+	<div id="score">Score: --</div>
+ <div class="box">
+	<script type="text/javascript">
+		var max=50;
+		for (var i = 0; i < max; i++) {
+			document.write('<div></div>');
+		}
+		function rnd(a,b){
+			return Math.floor(Math.random()*(b-a+1))+a;
+		}
+		function randColor(h,s,l){
+			return "hsl("+h+","+s+"%,"+l+"%)";
+		}
+		var divs=document.getElementsByClassName('box').item(0).getElementsByTagName('div');
+
+		for (var i = 0; i<max; i++) {
+				divs.item(i).style.left=rnd(10,90)+"%";
+				divs.item(i).style.backgroundColor=randColor(rnd(0,360),rnd(50,80),50);	
+				divs.item(i).style.webkitTransition = 'opacity 300ms, top ' + ((max-i)*80) + 'ms linear, left '+ + ((max-i)*90) + 'ms linear, -webkit-transform 1s';
+				divs.item(i).onmousedown = function(){
+					this.style.opacity=0;
+					addpoint();
+				}
+		}
+		var i=0;
+		function move(){
+			divs.item(i).style.top=103+'%';
+			divs.item(i).style.left=rnd(10,90)+'%';
+			divs.item(i).style.webkitTransform='rotate('+rnd(0,360)+'deg)';
+			i++;
+			if(i>=max) clearInterval(timer);
+		}
+		setInterval(move,700);
+		var score=0;
+		function addpoint(){
+			score++;
+			document.getElementById('score').innerHTML='score :'+score+'/' + max;
+		}
+	</script>
+ </div>
+</body>
+</html>
