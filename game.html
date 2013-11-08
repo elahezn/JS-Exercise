@@ -56,7 +56,7 @@
 			divs.item(i).style.left=rnd(10,90)+'%';
 			divs.item(i).style.webkitTransform='rotate('+rnd(0,360)+'deg)';
 			i++;
-			if(i>=max) clearInterval(timer);
+			if(i>=max) clearInterval(move);
 		}
 		setInterval(move,700);
 		var score=0;
