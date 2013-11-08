@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+	<table border="1"></table>
+	<script type="text/javascript" >
+
+		/*jshint strict:true, noarg:true, noempty:true, eqeqeq:true, bitwise:true, undef:true, unused:true, nonew:true, browser:true, devel:true, boss:true, curly:false, immed:false, latedef:true, newcap:true, plusplus:false, trailing:true, debug:false, asi:false, evil:false, expr:true, eqnull:false, esnext:false, funcscope:false, globalstrict:false, loopfunc:false */
+		(function(){
+			"use strict";
+			var
+			target=document.querySelector('table'),
+			drawTable= function(){
+				var
+					html='';
+				for (var i = 1; i < 10; i++) {
+					html += '<tr>';
+					for(var j=1; j<10; j++){
+						html += '<td>'+i*j+'</td>';
+					}
+					html += '</tr>';
+				};
+				target.innerHTML= html;
+			}
+			drawTable();
+
+		})();
+
+	</script>	
+</body>
+</html>
