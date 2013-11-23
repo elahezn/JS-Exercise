@@ -9,7 +9,7 @@
     height:100px;
     background-color:red;
    }
-  .yellow{
+   .yellow{
     background-color:yellow;
     -webkit-transform:rotate(20deg);
     -webkit-transform-origin:top right;
@@ -17,8 +17,8 @@
     -moz-transform-origin:top right;
     border-radius:10px;
     color:red;
-  }
-  div{
+   }
+   div{
     width:100px;
     height:100px;
     background-color:blue;
@@ -27,14 +27,14 @@
     font-size:20px;
     text-align:center;
     position:relative;
-  }
-  button{
+   }
+   button{
     margin-bottom:10px;
-  }
-  div.text{
+   }
+   div.text{
     background-color:white;
     font-family:garamond;
-  }
+   }
   </style>
 </head>
 <body>
@@ -64,6 +64,9 @@
     },800);
    });
    $('body').append('<p>Hello every one!</p>');
+   $('.six').click(function(){
+    $(this).slideToggle();
+   })
    
  });
 
@@ -74,6 +77,7 @@
   <div class="three">Hover me please!</div>
   <div class="four">Click me to remove!</div>
   <div class="five">Hover me!</div>
+  <div class="six">slidetoggle</div>
  
 </body>
 </html>
