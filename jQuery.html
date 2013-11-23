@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=utf-8 />
+  <title>JS Bin</title>
+  <style type="text/css">
+   div.one{
+    width:50px;
+    height:100px;
+    background-color:red;
+   }
+  .yellow{
+    background-color:yellow;
+    -webkit-transform:rotate(20deg);
+    -webkit-transform-origin:top right;
+    -moz-transform:rotate(20deg);
+    -moz-transform-origin:top right;
+    border-radius:10px;
+    color:red;
+  }
+  div{
+    width:100px;
+    height:100px;
+    background-color:blue;
+    margin-bottom:20px;
+    color:white;
+    font-size:20px;
+    text-align:center;
+    position:relative;
+  }
+  button{
+    margin-bottom:10px;
+  }
+  div.text{
+    background-color:white;
+    font-family:garamond;
+  }
+  </style>
+</head>
+<body>
+ <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css" />
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+ <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+ <script type="text/javascript">
+ $(document).ready(function(){
+   $('.button').click(function(){
+    $('.one').effect('shake',800);
+   });
+   $('.two').draggable();
+   $('.three').mouseover(function(){
+    $(this).addClass('yellow');
+   });
+   $('.three').mouseout(function(){
+    $(this).removeClass('yellow');
+   });
+   $('.four').click(function(){
+    $(this).remove();
+   });
+   $('.five').mouseover(function(){
+    $(this).animate({
+      backgroundColor:'purple',
+      width:'+=150px',
+      left:'100px'
+    },800);
+   });
+   $('body').append('<p>Hello every one!</p>');
+   
+ });
+
+  </script>
+  <div class="one"></div><br/>
+  <button class="button" name="click me">click me!</button>
+  <div class="two">Dragg me!</div>
+  <div class="three">Hover me please!</div>
+  <div class="four">Click me to remove!</div>
+  <div class="five">Hover me!</div>
+ 
+</body>
+</html>
