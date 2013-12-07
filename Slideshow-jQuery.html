@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset= "utf-8" />
+  <title>JS Bin</title>
+  <style type="text/css">
+    *{
+       margin:0;
+        padding:0;
+    }
+/*------------------------slideshow--------------------*/
+    div.slideshow{
+      width:450px;
+      height:320px;
+      margin:30px auto 0;
+      position:relative;
+      overflow:hidden;
+    }
+    div.slideshow div.train{
+      width:10000px;
+      height:300px;
+      position:absolute;
+    }
+    div.slideshow div.train >div{
+      width:450px;
+      height:300px;
+      border-radius:4px;
+      float:left;
+      background-size:cover;
+      background-position:left top;
+      background-repeat:no-repeat;
+    }
+/*-------------------------navigation-----------------------*/
+    div.slideshow ul.btns{
+      list-style:none;
+      height:13px;
+      position:absolute;
+      left:0;
+      bottom:0;
+    }
+    div.slideshow ul.btns li{
+      height:10px;
+      margin-right:4px;
+      width:30px;
+      cursor:pointer;
+      float:left;
+      border-radius:2px;
+      background-color:#333;
+      -webkit-transition: all 1100ms;
+      -moz-transition: all 1100ms;
+      -ms-transition: all 1100ms;
+      -o-transition: all 1100ms;
+      transition: all 1100ms;
+    }
+    div.slideshow ul.btns li:hover, 
+    div.slideshow ul.btns li.active{
+      height:16px;
+      background-color:#2677AD;
+      margin-top:-3px;
+      -webkit-transition-duration:all 200ms;
+      -moz-transition-duration: 200ms;
+      -ms-transition-duration: 200ms;
+      -o-transition-duration: 200ms;
+      transition-duration: 200ms;
+    }
+    div.slideshow div.prev, 
+    div.slideshow div.next{
+      background-image : url('http://ali.md/~mihando/subs/labs/share/data/arrow.png');
+      background-repeat:no-repeat;
+      width:30px;
+      height:30px;
+      position:absolute;
+      cursor:pointer;
+      top:130px;
+      opacity:0;
+      transition : opacity 500ms;
+      -o-transition : opacity 500ms;
+      -ms-transition : opacity 500ms;
+      -moz-transition : opacity 500ms;
+      -webkit-transition : opacity 500ms;
+    }
+    div.slideshow:hover div.prev,
+    div.slideshow:hover div.next{
+      opacity:1;
+    }
+    div.slideshow div.next{
+     right:20px;
+      background-position: -30px 0;
+    }
+    div.slideshow div.prev{
+      left:20px;
+      background-position : 0px 0px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="slideshow">
+      <div class="train">
+        <script type="text/javascript">
+          for(var i=0; i<10; i++){
+            document.write('<div style="background-color:  hsl('+i*50+', 70%, 30%);"></div>');
+          }
+        </script>
+      </div>
+      <div class="prev"></div>
+      <div class="next"></div>
+      <ul class="btns"></ul>
+    </div>
+  </div>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.min.js"></script>
+  <!--<![endif]-->
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript">
+    /*jshint strict:true, noarg:true, noempty:true, eqeqeq:true, bitwise:true, undef:true, unused:true, nonew:true, browser:true, devel:true, boss:true, curly:false, immed:false, latedef:true, newcap:true, plusplus:false, trailing:true, debug:false, asi:false, evil:false, expr:true, eqnull:false, esnext:false, funcscope:false, globalstrict:false, loopfunc:false */
+    (function($){
+      "use strict";
+      var
+        $slideshow=$('.slideshow'),
+        $slides=$slideshow.find('.train>div'),
+        $train=$slideshow.find('.train'),
+        $lists,
+        $btns=$slideshow.find('.btns'),
+        $prevBtn=$slideshow.find('.prev'),
+        $nextBtn=$slideshow.find('.next'),
+        slideWidth=$slides.eq(0).width(),
+        currentSlide=0,
+        autoPlayDelay=3000,
+        autoPlayIv,
+        navBtn= function(){
+          var lists='';
+          for(var i=0; i<$slides.length;i++){
+            lists+='<li></li>';
+          }
+          $btns.html(lists);
+          $lists=$btns.find('li');
+        },
+        go2slide=function(n){
+          if(n>=$slides.length)n=0;
+          if(n<0)n=$slides.length-1;
+          
+          $lists.removeClass('active');
+          $lists.eq(n).addClass('active');
+          
+           $train.animate({
+            left:n*slideWidth*-1
+          },600);
+           
+          currentSlide=n;
+        },
+        nextSlide= function(){
+          go2slide(currentSlide+1);
+        },
+        prevSlide= function(){
+          go2slide(currentSlide-1);
+        },
+        initEvents= function(){
+          $lists.click (function(){
+           go2slide($(this).index());
+          });
+          $nextBtn.click(nextSlide);
+          $prevBtn.click(prevSlide);
+        },
+        autoPlay= function(){
+          autoPlayIv= setInterval(nextSlide,autoPlayDelay);
+          $slideshow.mouseover(function(){
+           clearInterval(autoPlayIv);
+          });
+          $slideshow.mouseout(function(){
+            autoPlayIv = setInterval(nextSlide,autoPlayDelay);
+          });
+        },
+        init=function(){
+          navBtn();
+          initEvents();
+          go2slide(0);
+          autoPlay();
+        };
+        init();
+        
+    })(window.Zepto || window.jQuery);
+    
+  </script>
+</body>
+</html>
