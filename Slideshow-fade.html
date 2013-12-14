@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset=utf-8 />
+  <title>JS Bin</title>
+  <style type="text/css">
+    
+
+    *{
+      padding:0;
+      margin:0;
+    }
+    
+    div.slideshow{
+      width:450px;
+      height:350px;
+      margin:30px auto  0; 
+      position:relative;
+    }
+    div.slideshow >img{
+      opacity:0;
+      position:absolute;  
+    }
+    div.slideshow img.one{
+      z-index:2;
+      opacity:1;
+     
+    }
+    ul.btns{
+      list-style:none;
+      margin-left:170px;
+    }
+    div.slideshow ul.btns li{
+      width:20px;
+      height:20px;
+      border-radius:100px;
+      background-color:#00FF99;
+      float:left; 
+      cursor:pointer;
+      margin:315px 4px 0 4px; 
+      -webkit-transition: all 1000ms;
+      -moz-transition:all 1000ms;
+    }
+    div.slideshow ul.btns li:hover,
+    div.slideshow ul.btns li.active{
+      background-color:#FF6699;
+      -webkit-transition:all 200ms;
+      -moz-transition:all 200ms;
+    }
+    div.slideshow div.prev, 
+    div.slideshow div.next{
+      background-image : url('http://ali.md/~mihando/subs/labs/share/data/arrow.png');
+      background-repeat:no-repeat;
+      width:30px;
+      height:30px;
+      position:absolute;
+      cursor:pointer;
+      top:130px;
+      opacity:0;
+      transition : opacity 500ms;
+      -o-transition : opacity 500ms;
+      -ms-transition : opacity 500ms;
+      -moz-transition : opacity 500ms;
+      -webkit-transition : opacity 500ms;
+      z-index:5;
+    }
+    div.slideshow:hover div.prev,
+    div.slideshow:hover div.next{
+      opacity:1;
+    }
+    div.slideshow div.next{
+     right:10px;
+      background-position: -30px 0;
+    }
+    div.slideshow div.prev{
+      left:10px;
+      background-position : 0px 0px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="slideshow">
+      <img class="one" src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTD5jHhqW5CIbAcJRxoW7owPqZri4B0BTHYpHCAV2eUcBgARaYt" width="450" height="300" />
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCD-Y1LZO0k6mVsa6PMnu4AmmpcIqUKirfoUP2LB3UiAJU0StM" width="450" height="300" />
+      <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRDNwb1KaKAkfo7kZFWpb6DNm4_r4PAD-Uh9tvh8ZyHM6uLUUZ8" width="450" height="300" />
+  
+      <ul class="btns">
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+      </ul>
+      <div class="prev"></div>
+      <div class="next"></div>
+    </div>
+  </div>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.min.js"></script>
+  <!--<![endif]-->
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+  <script type="text/javascript">
+  /*jshint strict:true, noarg:true, noempty:true, eqeqeq:true, bitwise:true, undef:true, unused:true, nonew:true, browser:true, devel:true, boss:true, curly:false, immed:false, latedef:true, newcap:true, plusplus:false, trailing:true, debug:false, asi:false, evil:false, expr:true, eqnull:false, esnext:false, funcscope:false, globalstrict:false, loopfunc:false */
+
+    (function($){
+      "use strict";
+      var
+        $slideshow=$('.slideshow'),
+        $images=$slideshow.find('img'),
+        $prevBtn=$slideshow.find('.prev'),
+        $nextBtn=$slideshow.find('.next'),
+        $btns=$slideshow.find('ul.btns'),
+        $lists=$btns.find('li'),
+        currentSlide=0,
+        go2slide=function(n){
+          if(n===currentSlide) return;
+          if(n>=$images.length)n=0;
+          if(n<0) n=$images.length-1;
+          $images.eq(n).css({zIndex:3});
+          $images.eq(n).animate({opacity:1},700);
+          $lists.eq(n).addClass('active');
+          $images.eq(currentSlide).css({zIndex:1});
+          $images.eq(currentSlide).animate({opacity:0},500);
+          $lists.eq(currentSlide).removeClass('active');
+          currentSlide=n;
+        },
+    
+        nextSlide= function(){
+          go2slide(currentSlide+1);
+        },
+        prevSlide= function(){
+          go2slide(currentSlide-1);
+        },
+        initEvents=function(){
+          $lists.click(function(){
+            go2slide($(this).index());
+          });
+          $prevBtn.click(nextSlide);
+          $nextBtn.click(prevSlide);
+        },
+        
+        init= function(){
+          initEvents();
+        };
+      init();
+      
+    })(window.Zepto || window.jQuery);
+  
+  </script>
+   
+</body>
+</html>
