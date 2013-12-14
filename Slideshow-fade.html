@@ -111,6 +111,8 @@
         $btns=$slideshow.find('ul.btns'),
         $lists=$btns.find('li'),
         currentSlide=0,
+        autoPlayIv,
+        autoPlayDelay=3000,
         go2slide=function(n){
           if(n===currentSlide) return;
           if(n>=$images.length)n=0;
@@ -137,14 +139,23 @@
           $prevBtn.click(nextSlide);
           $nextBtn.click(prevSlide);
         },
-        
+        autoPlay= function(){
+          autoPlayIv=setInterval(nextSlide,autoPlayDelay);
+           $slideshow.mouseover(function(){
+           clearInterval(autoPlayIv);
+          });
+            $slideshow.mouseout(function(){
+            autoPlayIv = setInterval(nextSlide,autoPlayDelay);
+          });
+        },
         init= function(){
           initEvents();
+          autoPlay();
+          go2slide(0);
         };
       init();
-      
-    })(window.Zepto || window.jQuery);
   
+    })(window.Zepto || window.jQuery);
   </script>
    
 </body>
